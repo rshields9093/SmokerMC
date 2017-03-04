@@ -23,6 +23,10 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/core/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/SoftwareSerial}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/Ethernet}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/Ethernet/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/SPI}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/SPI/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.cpp.sketch.input.1879116613" name="CPP source files" superClass="io.sloeber.compiler.cpp.sketch.input"/>
 							</tool>
@@ -32,6 +36,10 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/core/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/SoftwareSerial}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/Ethernet}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/Ethernet/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/SPI}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/SPI/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.c.sketch.input.218763160" name="C Source Files" superClass="io.sloeber.compiler.c.sketch.input"/>
 							</tool>
@@ -41,6 +49,10 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/core/variant}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/SoftwareSerial}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/SoftwareSerial/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/Ethernet}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/Ethernet/src}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/SPI}&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/SmokerMC/libraries/SPI/src}&quot;"/>
 								</option>
 								<inputType id="io.sloeber.compiler.S.sketch.input.103258862" name="Assembly source files" superClass="io.sloeber.compiler.S.sketch.input"/>
 							</tool>
@@ -65,4 +77,5 @@
 		<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="org.eclipse.cdt.make.core.buildtargets"/>
 </cproject>
