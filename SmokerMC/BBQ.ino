@@ -2,6 +2,7 @@
  * Electric smoker project.
  * 
  * Consider using a 3.3V analog reference as described in the sketch "TempProbe_BetaOnlyMethod" to reduce noise
+ * Consider using multiple samples and taking average to reduce noise.
  */
 
 
