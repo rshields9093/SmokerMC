@@ -8,15 +8,18 @@
 #ifndef GENERICTHERMISTOR_H_
 #define GENERICTHERMISTOR_H_
 
+//Set to 1 to include debug code, set to 0 to exclude for smaller final size.
+#define THERMISTORDEBUG 1
+
 class GenericThermistor {
 private:
 
 public:
 	//Constructors
 	GenericThermistor(int pin, int beta, unsigned long seriesRes, unsigned long thermistorNominalRes,
-			double thermistorNominalTemp, bool isPullUp=false, int numSamples=5);
+			double thermistorNominalTemp, bool isPullUp=false, int numSamples=5, double tempOffset=0.0);
 	GenericThermistor(int pin, double a, double b, double c, unsigned long seriesRes,
-			bool isPullUp=false, int numSamples=5);
+			bool isPullUp=false, int numSamples=5, double tempOffset=0.0);
 
 	//Public Variables
 	bool useBeta; //use the Beta equation? If false use the full Steinhart-Hart equation
@@ -24,14 +27,15 @@ public:
 	int pin;  //the analog pin which this resistor is to be read from
 	int beta; //the Beta coefficient, if using the Beta variant of Steinhart-Hart
 	int numSamples; //analog pin will be read this many times and result averaged for data smoothing
+	double tempOffsetK; //
 	unsigned long thermistorNominalResistance; //the nominal resistance of the thermistor
 	double thermistorNominalTemperature; //the temperature at which the thermistor's nominal resistance is reported, usually 25C.
 	unsigned long seriesRes; //the value of the "other" resistor used in the voltage divider
 	double coeff_A, coeff_B, coeff_C; //the Steinhart-Hart coefficients
 
-	double getTempC() const;
-	double getTempF() const;
-	double getTempK() const;
+	double getTempC();
+	double getTempF();
+	double getTempK();
 	double getTempWithBeta(int ADC_Value);
 	double getTempWithSteinhartHart(int ADC_Value);
 };

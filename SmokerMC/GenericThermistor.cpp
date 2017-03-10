@@ -10,7 +10,8 @@
 #include "Arduino.h"
 
 GenericThermistor::GenericThermistor(int pin, int beta, unsigned long seriesRes,
-		unsigned long thermistorNominalRes, double thermistorNominalTemp, bool isPullUp, int numSamples) {
+		unsigned long thermistorNominalRes, double thermistorNominalTemp, bool isPullUp, int numSamples,
+		double tempOffset) {
 	this->useBeta = true;
 	this->pin = pin; //analog pin the thermistor is on
 	this->beta = beta; //Beta coefficient of the thermistor
@@ -19,10 +20,11 @@ GenericThermistor::GenericThermistor(int pin, int beta, unsigned long seriesRes,
 	this->thermistorNominalTemperature = thermistorNominalTemp; //the temperature at which the thermistor's nominal resistance is reported, usually 25C.
 	this->isPullUp = isPullUp; //whether or not the thermistor is tied to Vcc (othereise it is pull-down configuration)
 	this->numSamples = numSamples; //for data smoothing, thermistor value will be read this many times and result averaged, default = 5
+	this->tempOffsetK = tempOffset; //plus or minus calibration adjustment to final temp, in Kelvin
 }
 
 GenericThermistor::GenericThermistor(int pin, double a, double b, double c, unsigned long seriesRes,
-		bool isPullUp, int numSamples) {
+		bool isPullUp, int numSamples, double tempOffset) {
 	this->useBeta = false;
 	this->pin = pin; //analog pin the thermistor is on
 	this->coeff_A = a; //Steinhart-Hart coefficient A
@@ -31,6 +33,7 @@ GenericThermistor::GenericThermistor(int pin, double a, double b, double c, unsi
 	this->seriesRes = seriesRes; //value of series resitor in voltage divider
 	this->isPullUp = isPullUp; //whether or not the thermistor is tied to Vcc (othereise it is pull-down configuration)
 	this->numSamples = numSamples; //for data smoothing, thermistor value will be read this many times and result averaged, default = 5
+	this->tempOffsetK = tempOffset; //plus or minus calibration adjustment to final temp, in Kelvin
 }
 
 //Calculate temperature using the Beta coefficient method
@@ -67,7 +70,7 @@ double GenericThermistor::getTempWithSteinhartHart(int ADC_Value) {
 }
 
 //Return temperature in Kelvin
-double GenericThermistor::getTempK() const {
+double GenericThermistor::getTempK() {
 	double tempK;
 	int samples[this->numSamples];
 
@@ -82,22 +85,23 @@ double GenericThermistor::getTempK() const {
 	}
 	ADC_average /= this->numSamples;
 
-	int adc = analogRead(this->pin);
 	if(this->useBeta) {tempK = this->getTempWithBeta(ADC_average);}
 	else {tempK = this->getTempWithSteinhartHart(ADC_average);}
+
+	tempK += this->tempOffsetK;
 
 	return tempK;
 }
 
 //Return temperature in Celcius
-double GenericThermistor::getTempC() const {
+double GenericThermistor::getTempC() {
 	double tempC = this->getTempK();
 	tempC -= 273.15;
 	return tempC;
 }
 
 //Return temperature in Fahrenheit
-double GenericThermistor::getTempF() const {
+double GenericThermistor::getTempF() {
 	double tempF = this->getTempK();
 	tempF = (tempF * 9.0) / 5.0 + 32;
 	return tempF;
