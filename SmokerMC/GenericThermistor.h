@@ -13,6 +13,8 @@
 
 class GenericThermistor {
 private:
+	double getTempWithBeta(int ADC_Value);
+	double getTempWithSteinhartHart(int ADC_Value);
 
 public:
 	//Constructors
@@ -36,8 +38,6 @@ public:
 	double getTempC();
 	double getTempF();
 	double getTempK();
-	double getTempWithBeta(int ADC_Value);
-	double getTempWithSteinhartHart(int ADC_Value);
 };
 
 #endif /* GENERICTHERMISTOR_H_ */
