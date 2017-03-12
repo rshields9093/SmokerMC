@@ -1,0 +1,6 @@
+1. Test if using 3.3 reference voltage is less noisy than using Arduino's 5V pin
+2. Test grill probe using beta in pull up config
+2. Test grill probe using beta in pull down config
+3. Add food1 probe and test
+4. Test if adding any capacitance helps with data jitter
+5. Remove debug output and/or organize it better using a debug flag
