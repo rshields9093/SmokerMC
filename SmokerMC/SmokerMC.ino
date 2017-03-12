@@ -12,7 +12,7 @@ GenericThermistor ambientProbe, grillProbe, food1Probe;
 void setup() {
 
 	//set up Ambient Temperature Sensor parameters
-	ambientProbe.isPullUp = false;
+	ambientProbe.isPullUp = true;
 	ambientProbe.useBeta = false;
 	ambientProbe.numSamples = 5;
 	ambientProbe.pin = 0;
@@ -22,25 +22,27 @@ void setup() {
 	ambientProbe.seriesRes = 10000.0;
 	ambientProbe.tempOffsetK = 0.0;
 
-//	//setup parameters for Grill Temperature Probe
-//	int grillPin = 1;
-	grillProbe.beta = 4094.15;
-//	unsigned long grillSerRes = 1000000;
-//	unsigned long grillNomRes = 1000000;
-//	double grillNomTemp = 25;
-//	double grillTempOffset = 0.0;
-//	grillProbe = new GenericThermistor(grillPin, grillBeta, grillSerRes, grillNomRes,
-//			grillNomTemp, isPullUp, numSamples, grillTempOffset);
-//
-//	//setup parameters for Food1 Probe
-//	int food1Pin = 2;
-//	double food1_a = 1.102800003e-3;
-//	double food1_b = 1.268962063e-4;
-//	double food1_c = 1.820232864e-7;
-//	unsigned long food1SerRes = 10000;
-//	double food1TempOffset = 0.0;
-//	food1Probe = new GenericThermistor(food1Pin, food1_a, food1_b, food1_c,
-//			food1SerRes, isPullUp, numSamples, food1TempOffset);
+	//setup parameters for Grill Temperature Probe
+	grillProbe.isPullUp = true;
+	grillProbe.useBeta = false;
+	grillProbe.pin = 1;
+	grillProbe.coeff_A = 1.102800003e-3;
+	grillProbe.coeff_B = 1.268962063e-4;
+	grillProbe.coeff_C = 1.820232864e-7;
+	grillProbe.seriesRes = 1000000;
+	grillProbe.numSamples = 5;
+	grillProbe.tempOffsetK = 0.0;
+
+	//setup parameters for Food1 Probe
+	food1Probe.isPullUp = true;
+	food1Probe.useBeta = false;
+	food1Probe.pin = 2;
+	food1Probe.coeff_A = 1.102800003e-3;
+	food1Probe.coeff_B = 1.268962063e-4;
+	food1Probe.coeff_C = 1.820232864e-7;
+	food1Probe.seriesRes = 1000000;
+	food1Probe.numSamples = 5;
+	food1Probe.tempOffsetK = 0.0;
 
 	Serial.begin(9600);
 }
@@ -48,19 +50,24 @@ void setup() {
 // The loop function is called in an endless loop
 void loop() {
 	ambientTemp = ambientProbe.getTempF();
-//	grillTemp = grillProbe.getTempF();
-//	food1Temp = food1Probe.getTempF();
+	grillTemp = grillProbe.getTempF();
+	food1Temp = food1Probe.getTempF();
 
-	Serial.print("Ambient Temperature: ");
+	//for human consumption
+	/*Serial.print("Ambient Temperature: ");
 	Serial.print(ambientTemp);
-	Serial.println("F");
+	Serial.print(", Grill Temp: ");
+	Serial.print(grillTemp);
+	Serial.print(", Food1 Temp: ");
+	Serial.print(food1Temp);
+	Serial.println();*/
 
-
-
-//	Serial.print(", Grill Temp: ");
-//	Serial.print(grillTemp);
-//	Serial.print(", Food1 Temp: ");
-//	Serial.print(food1Temp);
+	//for copy/paste to CVS file
+	Serial.print(ambientTemp);
+	Serial.print(",");
+	Serial.print(grillTemp);
+	Serial.print(",");
+	Serial.print(food1Temp);
 	Serial.println();
 
 	delay(5000);

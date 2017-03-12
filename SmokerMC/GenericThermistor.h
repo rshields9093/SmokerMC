@@ -30,6 +30,7 @@ public:
 	double seriesRes; //the value of the "other" resistor used in the voltage divider
 	double coeff_A, coeff_B, coeff_C; //the Steinhart-Hart coefficients
 
+	int getADCReading(int pin);
 	double getTempC();
 	double getTempF();
 	double getTempK();
